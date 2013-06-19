@@ -21,6 +21,7 @@ Board.prototype.dupBoard = function(){
 }
 
 Board.prototype.makeMove = function(x, y){
+	console.log(this.isValidMove(x, y));
 	if (this.isValidMove(x, y)){
 		this.board[x][y] = this.currentMark;
 		this.currentMark = (this.currentMark === 'X' ? 'O' : 'X');
@@ -202,11 +203,12 @@ TicTacToeUI.prototype.moveHandler = function(id){
 			return;
 		}
 		var coords = that.returnCoordinates(id);
-		that.board.makeMove(coords[0], coords[1]);
+		if (!that.board.makeMove(coords[0], coords[1])){
+			return;
+		}
 		that.displayGame();
 
 		if (that.isGameOver()){
-			console.log("hello");
 			that.board.currentMark = (that.board.currentMark === 'X') ? 'O' : 'X';
 			alert(that.board.currentMark + " wins!");
 			return;

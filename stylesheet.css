@@ -1,13 +1,11 @@
-.box { width:10px; 
- 			 height:10px; 
+.box { width:20px; 
+ 			 height:20px; 
 			 background-color:black;
-			 border-color:black; 
-			 border:1px solid;
 			 float:left;
 		 }
 				 
-.row { width:700px;
-			 height:12px;}
+.row { width:1500px;
+			 height:20px;}
 			 
 .green { background-color:green; }
 

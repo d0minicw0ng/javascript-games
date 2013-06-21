@@ -1,0 +1,14 @@
+.box { width:10px; 
+ 			 height:10px; 
+			 background-color:black;
+			 border-color:black; 
+			 border:1px solid;
+			 float:left;
+		 }
+				 
+.row { width:700px;
+			 height:12px;}
+			 
+.green { background-color:green; }
+
+.red { background-color:red; }

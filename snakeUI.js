@@ -10,7 +10,7 @@ Game.prototype.drawBoard = function(){
 		$('#board').append(row);
 		
 		for(var j = 0; j < that.board.dimension.cWidth; j++){
-			var box = $("<div></div>").addClass("box").attr('id', 'col' + j);
+			var box = $("<span></span>").addClass("box").attr('id', 'col' + j);
 			$('#row' + i).append(box);
 		}
 	}
@@ -65,7 +65,7 @@ Game.prototype.play = function(){
 		that.drawBoard();
 		that.renderApple();
 		that.renderSnake();
-	}, 1)
+	}, 50)
 }
 
 Game.prototype.getUserInput = function() {

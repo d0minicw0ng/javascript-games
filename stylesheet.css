@@ -1,11 +1,14 @@
-.box { width:20px; 
- 			 height:20px; 
-			 background-color:black;
-			 float:left;
-		 }
+.box { 
+	width:20px; 
+	height:20px; 
+  background-color:black;
+	float:left;
+}
 				 
-.row { width:1500px;
-			 height:20px;}
+.row { 
+	width:1500px;
+	height:20px;
+}
 			 
 .green { background-color:green; }
 

@@ -57,7 +57,15 @@ Game.prototype.play = function(){
 	
 	var interval = window.setInterval(function(){
 		if (!that.step()){
-			alert("Game Over")
+			var c = confirm("Game Over, Play again?");
+			if (c === true){
+				var game = new Game(30, 30);
+
+				$(function(){
+					game.play();
+				})
+			}
+			
 			window.clearInterval(interval);
 		};
 		

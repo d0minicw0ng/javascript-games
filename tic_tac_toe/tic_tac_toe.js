@@ -3,28 +3,22 @@ function Board(){
 	this.currentMark = 'X';
 }
 
-Board.prototype.displayBoard = function(){
-	console.log("  0 1 2");
-	for(var i = 0; i < 3; i++){
-		console.log(i + " " + this.board[i].join(' '));
-	}
-}
-
 Board.prototype.dupBoard = function(){
+	var that = this;
 	var board_copy = new Board();
 	for(var i = 0; i < 3; i++){
 		for(var j = 0; j < 3; j++){
-			board_copy.board[i][j] = this.board[i][j];
+			board_copy.board[i][j] = that.board[i][j];
 		}
 	}
 	return board_copy;
 }
 
-Board.prototype.makeMove = function(x, y){
-	console.log(this.isValidMove(x, y));
-	if (this.isValidMove(x, y)){
-		this.board[x][y] = this.currentMark;
-		this.currentMark = (this.currentMark === 'X' ? 'O' : 'X');
+Board.prototype.makeMove = function(x, y, mark){
+	var that = this;
+	if (that.isValidMove(x, y)){
+		that.board[x][y] = mark || that.currentMark;
+		that.currentMark = (that.currentMark === 'X' ? 'O' : 'X');
 		return true;
 		} else {
 		return false;
@@ -52,7 +46,7 @@ Board.prototype.isGameOver = function(){
 Board.prototype.allSame = function(array){
 	var mark = array[0];
 	if (mark === '?') { return false; }
-	for(var i = 1; i<3; i++){
+	for (var i = 1; i < 3; i++){
 		if (mark !== array[i]){
 			return false;
 		}
@@ -126,7 +120,7 @@ function ComputerPlayer(mark) {
 }
 
 ComputerPlayer.prototype.findMove = function(board){
-	return this.winningMove(board) || this.randomMove(board);
+	return this.winningMove(board) || this.blockingMove(board) || this.randomMove(board);
 }
 
 ComputerPlayer.prototype.winningMove = function(board){
@@ -145,6 +139,25 @@ ComputerPlayer.prototype.winningMove = function(board){
 		}
 	}
 	return null;
+}
+
+ComputerPlayer.prototype.blockingMove = function(board){
+	var that = this;
+	var dupBoard = board.dupBoard();
+	var humanMark = "O";
+	for (var i = 0; i < 3; i++){
+		for (var j = 0; j < 3; j++){
+			if (dupBoard.board[i][j] === '?'){
+				dupBoard.makeMove(i, j, humanMark);
+				if (dupBoard.isGameOver()){
+					return [i, j]
+				} else {
+					dupBoard.board[i][j] = '?';
+				}
+			}
+		}
+	}
+	return null;		
 }
 
 ComputerPlayer.prototype.randomMove = function(board){

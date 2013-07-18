@@ -13,3 +13,7 @@
 .green { background-color:green; }
 
 .red { background-color:red; }
+
+#board {
+	padding-left:300px;
+}

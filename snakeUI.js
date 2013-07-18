@@ -59,7 +59,7 @@ Game.prototype.play = function(){
 		if (!that.step()){
 			var c = confirm("Game Over, Play again?");
 			if (c === true){
-				var game = new Game(30, 30);
+				var game = new Game(20, 20);
 
 				$(function(){
 					game.play();
@@ -73,7 +73,7 @@ Game.prototype.play = function(){
 		that.drawBoard();
 		that.renderApple();
 		that.renderSnake();
-	}, 50)
+	}, 100)
 }
 
 Game.prototype.getUserInput = function() {
@@ -98,7 +98,7 @@ Game.prototype.getUserInput = function() {
   });
 }
 
-var game = new Game(30, 30);
+var game = new Game(20, 20);
 
 $(function(){
 	game.play();
